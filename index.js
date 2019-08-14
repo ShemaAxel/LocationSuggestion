@@ -3,7 +3,7 @@ const MongoClient = require("mongodb");
 const bondyParser = require("body-parser");
 const app = express();
 const db = require("./config/db");
-//dcasdfsfsd
+const log = require("./config/logging");
 // const port = 3000;
 app.set("port", process.env.PORT || 3000);
 app.use(bondyParser.urlencoded({ extended: true }));
@@ -15,6 +15,7 @@ MongoClient.connect(db.url, (err, database) => {
   } else {
     require("./app/routes")(app, database);
     app.listen(app.get("port"), () => {
+      log.info("Accessing the API entry point at: " + new Date().toJSON());
       console.log("Live from the server:" + app.get("port"));
     });
   }

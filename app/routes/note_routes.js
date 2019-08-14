@@ -1,21 +1,27 @@
 var ObjectID = require("mongodb").ObjectID;
+const log = require("../../config/logging");
+
 module.exports = function(app, db) {
   //all location byname
   app.get("/locations/:q", (req, res) => {
     const name = req.params.q;
-
+    log.info(
+      "Accessing the Locations API with Parameter : " +
+        name +
+        " at:" +
+        new Date().toJSON()
+    );
     db.collection("locations")
       .find({ name: { $regex: name } })
       .toArray(function(err, items) {
         if (err) {
+          log.error("An error occured :" + err.toJSON());
           console.log(err);
         } else {
           //sort in ascending
           items.sort(GetSortOrder("name"));
           //calculate score
-
-          console.log(items);
-
+          log.info("Success response :" + JSON.stringify(items));
           res.send(items);
         }
       });
@@ -23,12 +29,15 @@ module.exports = function(app, db) {
 
   //all
   app.get("/locations/", (req, res) => {
+    log.info("Accessing Locations End-Point");
     db.collection("locations")
       .find({})
       .toArray(function(err, items) {
         if (err) {
+          log.info("Error occured :" + err);
           console.log(err);
         } else {
+          log.info("Success Response :" + JSON.stringify(items));
           res.send(items);
         }
       });

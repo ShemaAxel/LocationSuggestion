@@ -1,0 +1,25 @@
+18:36:42.968 INFO  subscription to accepted at 2019-08-14T16:36:42.968Z 
+18:39:13.973 INFO  subscription to accepted at 2019-08-14T16:39:13.972Z 
+18:39:45.723 INFO  subscription to accepted at 2019-08-14T16:39:45.723Z 
+18:40:05.589 INFO  subscription to accepted at 2019-08-14T16:40:05.589Z 
+18:41:56.806 INFO  subscription to accepted at 2019-08-14T16:41:56.805Z 
+18:43:10.349 INFO  subscription to accepted at 2019-08-14T16:43:10.349Z 
+18:48:20.840 INFO  subscription to accepted at 2019-08-14T16:48:20.839Z 
+18:49:15.940 INFO  subscription to accepted at 2019-08-14T16:49:15.940Z 
+18:49:25.848 INFO  subscription to accepted at 2019-08-14T16:49:25.847Z 
+18:55:37.611 INFO  Accessing the API entry point at: 2019-08-14T16:55:37.611Z 
+18:56:29.313 INFO  Accessing the API entry point at: 2019-08-14T16:56:29.313Z 
+18:57:18.293 INFO  Accessing the API entry point at: 2019-08-14T16:57:18.293Z 
+18:57:21.700 INFO  Accessing the API entry point at: 2019-08-14T16:57:21.699Z 
+18:57:54.581 INFO  Accessing the Locations API with Parameter : A at:2019-08-14T16:57:54.581Z 
+18:58:24.079 INFO  Accessing the API entry point at: 2019-08-14T16:58:24.079Z 
+18:58:25.920 INFO  Accessing the Locations API with Parameter : A at:2019-08-14T16:58:25.920Z 
+18:58:26.125 INFO  Success response :[object Object],[object Object],[object Object],[object Object],[object Object] 
+18:59:34.572 INFO  Accessing the API entry point at: 2019-08-14T16:59:34.572Z 
+18:59:38.504 INFO  Accessing the Locations API with Parameter : A at:2019-08-14T16:59:38.504Z 
+18:59:38.713 INFO  Success response :[{"_id":"5d53e9971d95b007c24684e1","name":"Albania Tirana","latitude":"28.554545","longitude":"-17.51515146","score":0.5},{"_id":"5d53e9971d95b007c24684e0","name":"Anguilla","latitude":"12.554545","longitude":"-18.234646","score":0.5},{"_id":"5d53fb3b7c213e60b8ef6b25","name":"Anguilla","latitude":"12.554545","longitude":"-18.234646","score":0.5},{"_id":"5d53e9971d95b007c24684e2","name":"Armenia Yerevan","latitude":"28.03333035","longitude":"-8.131894146","score":0.5},{"_id":"5d53e9971d95b007c24684e3","name":"Azerbaijan","latitude":"3.00001545","longitude":"-32.151511","score":0.5}] 
+19:02:11.270 INFO  Accessing the API entry point at: 2019-08-14T17:02:11.270Z 
+19:02:17.227 INFO  Accessing the API entry point at: 2019-08-14T17:02:17.227Z 
+19:02:38.165 INFO  Accessing the API entry point at: 2019-08-14T17:02:38.165Z 
+19:03:19.319 INFO  Accessing the API entry point at: 2019-08-14T17:03:19.319Z 
+19:03:26.943 INFO  Accessing the API entry point at: 2019-08-14T17:03:26.943Z 

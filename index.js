@@ -4,7 +4,8 @@ const bondyParser = require("body-parser");
 const app = express();
 const db = require("./config/db");
 //dcasdfsfsd
-const port = 3000;
+// const port = 3000;
+app.set("port", process.env.PORT || 5000);
 app.use(bondyParser.urlencoded({ extended: true }));
 //import index routes
 
@@ -13,8 +14,8 @@ MongoClient.connect(db.url, (err, database) => {
     console.log(err);
   } else {
     require("./app/routes")(app, database);
-    app.listen(port, () => {
-      console.log("Live from the server:" + port);
+    app.listen(app.get("port"), () => {
+      console.log("Live from the server:" + app.get("port"));
     });
   }
 });

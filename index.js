@@ -5,7 +5,7 @@ const app = express();
 const db = require("./config/db");
 //dcasdfsfsd
 // const port = 3000;
-app.set("port", process.env.PORT || 5000);
+app.set("port", process.env.PORT || 3000);
 app.use(bondyParser.urlencoded({ extended: true }));
 //import index routes
 

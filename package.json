@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "jasmine"
   },
   "author": "",
   "license": "ISC",
@@ -12,8 +13,10 @@
     "node": "8.16.0"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
+    "jasmine": "^3.4.0",
     "mongodb": "2.2.33"
   },
   "devDependencies": {

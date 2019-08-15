@@ -3,8 +3,10 @@ const log = require("../../config/logging");
 
 module.exports = function(app, db) {
   //all location byname
-  app.get("/locations/:q", (req, res) => {
+  app.get("/suggestions/:q/:lat/:lon", (req, res) => {
     const name = req.params.q;
+    const lat = req.params.lat;
+    const lon = req.params.lon;
     log.info(
       "Accessing the Locations API with Parameter : " +
         name +

@@ -12,10 +12,12 @@ Also in addition I did add logging as extra since logs are crucial to an applica
 
 ================================
 
-=> RUN the index.js to start the application
+=> RUN the index.js to start the application or just type nodemon in the project root dirctory
 NB: View the console to see which port the application is running on
 
-=> You can test the API using POSTMAN or an other tool
+=> RUNNING test: npm test
+
+=> You can test the API using POSTMAN or any other tool
 
 Request Example: http://localhost:3000/suggestions/Ang/2.554545/-12.151511
 

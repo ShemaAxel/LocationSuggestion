@@ -22,6 +22,3 @@ NB: View the console to see which port the application is running on
 Request Example: http://localhost:3000/suggestions/Ang/2.554545/-12.151511
 
 ===============================
-What's not done?
-
-Score calculation based on latitude and longitude is not complete for now.

@@ -19,8 +19,7 @@ NB: View the console to see which port the application is running on
 
 => RUNNING test: npm test
 
-=> You can test the API using POSTMAN or any other tool
-
+=> You can test the API using POSTMAN 
 NB: Valid Request Examples,
 
 Request Example: http://localhost:3000/suggestions/Ang/2.554545/-12.151511

@@ -4,9 +4,11 @@ Location Suggestion API
 
 Used Node JS and the Express library
 
-Used mLab(Mongo) to implement my own repository containing a list of places (name,lat,long)
+Used google places autocomplete to fetch all the places suggestions and get Each places details(coordinates)
 
 Used Jasmine js to implement API tests
+
+Extra:
 
 Also in addition I did add logging as extra since logs are crucial to an application
 
@@ -19,6 +21,10 @@ NB: View the console to see which port the application is running on
 
 => You can test the API using POSTMAN or any other tool
 
+NB: Valid Request Examples,
+
 Request Example: http://localhost:3000/suggestions/Ang/2.554545/-12.151511
+
+Request Example Heroku : https://hehe-api.herokuapp.com/suggestions/Ang/2.554545/-12.151511
 
 ===============================

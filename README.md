@@ -4,7 +4,7 @@ Location Suggestion API
 
 Used Node JS and the Express library
 
-Used google places autocomplete to fetch all the places suggestions and get Each places details(coordinates)
+Used google places autocomplete to fetch all the cities as restriction and get Each city details(coordinates)
 
 Used Jasmine js to implement API tests
 

@@ -1,86 +1,101 @@
 const log = require("../../config/logging");
 const geolib = require("geolib");
+const request = require("superagent");
+var suggestions;
+var all = [];
+var lat;
+var lon;
+var response;
 //
-module.exports = function(app, db) {
+module.exports = function(app) {
   //all location byname
-  app.get("/suggestions/:q/:lat/:lon", (req, res) => {
+  app.get("/suggestions/:q/:lat/:lon", async (req, res) => {
     const name = req.params.q;
-    const lat = req.params.lat;
-    const lon = req.params.lon;
+    lat = req.params.lat;
+    lon = req.params.lon;
+    response = res;
     log.info(
       "Accessing the Locations API with Parameter : " +
         name +
         " at:" +
         new Date().toJSON()
     );
-    db.collection("locations")
-      .find({ name: { $regex: name } })
-      .toArray(function(err, items) {
-        if (err) {
-          log.error("An error occured :" + err.toJSON());
-          console.log(err);
-        } else {
-          //calculate score
-          log.info("Calculating the score");
-          items.forEach(element => {
-            const dist =
-              geolib.getDistance(
-                { latitude: lat, longitude: lon },
-                { latitude: element.latitude, longitude: element.longitude }
-              ) / 1000; //distance in km
-            element.score = calculateScore(dist);
-          });
-          //sorting array ascending
-          log.info("Sorting the elements");
-          items.sort(function(a, b) {
-            return parseFloat(b.score) - parseFloat(a.score);
-          });
-          log.info("Success response :" + JSON.stringify(items));
-          response = {
-            suggestions: items
-          };
-          res.send(response);
-        }
+    suggestions = await fetchLocation(name).then(function(result) {
+      log.info("fetching all places from google :" + JSON.stringify(result));
+      return result;
+    });
+    await suggestions.forEach(async function(element) {
+      var suggestionz = await fetchDetails(element).then(function(result) {
+        pushResults(result);
       });
-  });
-
-  //all
-  app.get("/locations/", (req, res) => {
-    log.info("Accessing Locations End-Point");
-    db.collection("locations")
-      .find({})
-      .toArray(function(err, items) {
-        if (err) {
-          log.info("Error occured :" + err);
-          console.log(err);
-        } else {
-          log.info("Success Response :" + JSON.stringify(items));
-          items.sort(function(a, b) {
-            return parseFloat(b.score) - parseFloat(a.score);
-          });
-          res.send(items);
-        }
-      });
-  });
-
-  app.post("/locations", (req, res) => {
-    const location = {
-      name: req.body.name,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude,
-      score: req.body.score
-    };
-    db.collection("locations").insert(location, (err, result) => {
-      if (err) {
-        res.send({ error: err });
-      } else {
-        // console.log(result);
-        res.send(result.ops[0]);
-      }
     });
   });
 };
 
+//all results
+async function pushResults(place) {
+  all.push(place);
+
+  if (all.length === suggestions.length) {
+    log.info("all places and coordinates :" + JSON.stringify(all));
+    allOperations(all);
+  }
+}
+
+//getting locations
+async function fetchLocation(name) {
+  log.info("fetching places with :" + name);
+  const all = await request.get(
+    "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" +
+      name +
+      "&key=AIzaSyDUYbTR-3PDWPhgxjENs4yf35g2eHc641s"
+  );
+  return all.body.predictions;
+}
+
+//suggestions details
+async function fetchDetails(element) {
+  log.info("fetching places details with place id :" + element.place_id);
+  const all = await request.get(
+    "https://maps.googleapis.com/maps/api/place/details/json?input=bar&placeid=" +
+      element.place_id +
+      "&key=AIzaSyDUYbTR-3PDWPhgxjENs4yf35g2eHc641s"
+  );
+  place = {
+    name: element.description,
+    latitude: all.body.result.geometry.location.lat,
+    longitude: all.body.result.geometry.location.lng,
+    score: 0
+  };
+  log.info("place with details :" + JSON.stringify(place));
+  return place;
+}
+
+function allOperations(locations) {
+  log.info("preparing the response allOperations()");
+  locations.forEach(element => {
+    log.info("calculating the distance for :" + JSON.stringify(element));
+    const dist =
+      geolib.getDistance(
+        { latitude: lat, longitude: lon },
+        { latitude: element.latitude, longitude: element.longitude }
+      ) / 1000; //distance in km
+    log.info("calculating the score for :" + JSON.stringify(element));
+    element.score = calculateScore(dist);
+  });
+  //sorting array ascending
+  log.info("Sorting the elements");
+  locations.sort(function(a, b) {
+    return parseFloat(b.score) - parseFloat(a.score);
+  });
+  log.info("Success response :" + JSON.stringify(locations));
+  result = {
+    suggestions: locations
+  };
+  suggestions = null;
+  all = [];
+  response.send(result);
+}
 //score calculator
 function calculateScore(dist) {
   if (dist < 10) {

@@ -19,7 +19,8 @@
     "geolib": "^3.0.4",
     "jasmine": "^3.4.0",
     "mongodb": "2.2.33",
-    "simple-node-logger": "^18.12.23"
+    "simple-node-logger": "^18.12.23",
+    "superagent": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"

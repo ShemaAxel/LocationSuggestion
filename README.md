@@ -27,4 +27,4 @@ Request Example: http://localhost:3000/suggestions/Ang/2.554545/-12.151511
 
 Request Example Heroku : https://hehe-api.herokuapp.com/suggestions/Ang/2.554545/-12.151511
 
-===============================
+# example: /Ang is the SEARCK_KEY you can change it to any city or places you searching for
